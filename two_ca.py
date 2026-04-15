@@ -145,7 +145,7 @@ def is_accepting(remaining: str, c1: int, c2: int) -> bool:
 
 def print_config(state: str, remaining: str, c1: int, c2: int):
     """Print one configuration to standard output."""
-    print(f"({state},{remaining},{c1},{c2})")
+    print(f"{state:>16}, {remaining:>20}, {c1:>3}, {c2:>3}")
 
 
 def simulate(transitions: dict, input_string: str):
@@ -167,10 +167,10 @@ def simulate(transitions: dict, input_string: str):
 
         state, remaining, c1, c2 = successor
 
-    if is_accepting(remaining, c1, c2):
-        print("ACCEPT")
+        if is_accepting(remaining, c1, c2):
+            print("----ACCEPT")
     else:
-        print("REJECT")
+            print("----REJECT")
 
 
 def main():
