@@ -188,6 +188,8 @@ def main():
         input_string = line.rstrip("\n")
         simulate(transitions, input_string)
 
+print()
+
 
 if __name__ == "__main__":
     main()
