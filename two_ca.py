@@ -187,8 +187,7 @@ def main():
     for line in sys.stdin:
         input_string = line.rstrip("\n")
         simulate(transitions, input_string)
-
-print()
+        print()
 
 
 if __name__ == "__main__":
