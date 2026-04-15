@@ -157,13 +157,12 @@ def simulate(transitions: dict, input_string: str):
     while True:
         print_config(state, remaining, c1, c2)
 
-        if is_accepting(remaining, c1, c2):
-            print("----ACCEPT")
-            return
-
         successor = get_successor(transitions, state, remaining, c1, c2)
         if successor is None:
-            print("----REJECT")
+            if is_accepting(remaining, c1, c2):
+                print("----ACCEPT")
+            else:
+                print("----REJECT")
             return
 
         state, remaining, c1, c2 = successor
