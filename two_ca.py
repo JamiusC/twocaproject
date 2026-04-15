@@ -167,11 +167,6 @@ def simulate(transitions: dict, input_string: str):
 
         state, remaining, c1, c2 = successor
 
-        if is_accepting(remaining, c1, c2):
-            print("----ACCEPT")
-    else:
-            print("----REJECT")
-
 
 def main():
     if len(sys.argv) != 2:
