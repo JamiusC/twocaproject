@@ -149,10 +149,6 @@ def print_config(state: str, remaining: str, c1: int, c2: int):
 
 
 def simulate(transitions: dict, input_string: str):
-    """
-    Simulate the automaton on one input string.
-    Print the full computation trace and then ACCEPT or REJECT.
-    """
     state = "#"
     remaining = input_string
     c1 = 0
@@ -161,12 +157,13 @@ def simulate(transitions: dict, input_string: str):
     while True:
         print_config(state, remaining, c1, c2)
 
+        if is_accepting(remaining, c1, c2):
+            print("----ACCEPT")
+            return
+
         successor = get_successor(transitions, state, remaining, c1, c2)
         if successor is None:
-            if is_accepting(remaining, c1, c2):
-                print("----ACCEPT")
-            else:
-                print("----REJECT")
+            print("----REJECT")
             return
 
         state, remaining, c1, c2 = successor
