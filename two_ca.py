@@ -163,7 +163,11 @@ def simulate(transitions: dict, input_string: str):
 
         successor = get_successor(transitions, state, remaining, c1, c2)
         if successor is None:
-            break
+            if is_accepting(remaining, c1, c2):
+                print("----ACCEPT")
+            else:
+                print("----REJECT")
+            return
 
         state, remaining, c1, c2 = successor
 
