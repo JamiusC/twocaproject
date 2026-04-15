@@ -1,0 +1,11 @@
+// 1-state real-time 2CA to decide the language of all binary strings with
+//    equal numbers of 0's and 1's
+//
+// Only one of the two counters can be nonzero at any time
+// counter1 is the difference between the symbol counts if more 0's than 1's
+// counter2 is the difference between the symbol counts if more 1's than 0's
+//
+(#,0,*,=) -> (#,+,=)
+(#,0,=,>) -> (#,=,-)
+(#,1,>,=) -> (#,-,=)
+(#,1,=,*) -> (#,=,+)

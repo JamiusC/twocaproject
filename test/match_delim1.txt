@@ -1,0 +1,6 @@
+// 2-CA to recognize the language of strings of well-balance parentheses
+//
+// The 2nd counter is not used and stays 0 the whole time.
+//
+(#,(,*,=) -> (#,+,=)
+(#,),>,=) -> (#,-,=)

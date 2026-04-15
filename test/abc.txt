@@ -1,0 +1,13 @@
+// 2-CA recognizing the language { a^nb^nc^n : n >= 0 }
+// That is, zero or more a's followed by the same number of b's,
+// followed by the same number of c's
+//
+//
+// There are other workable ways to use the counters.
+//
+(#,  ,=,=) -> (#a,=,=)
+(#a,a,*,=) -> (#a,+,=)   // 1st counter counts a's
+(#a, ,*,*) -> (#b,=,=)
+(#b,b,*,*) -> (#b,=,+)   // 2nd counter counts b's
+(#b, ,*,*) -> (#c,=,=)
+(#c,c,>,>) -> (#c,-,-)   // Decrement both counters while counting c's

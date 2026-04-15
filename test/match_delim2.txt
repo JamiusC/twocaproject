@@ -1,0 +1,36 @@
+// Decides the language of well-balanced delimiters of two types:
+//    parens () and brackets []
+//
+// The stack is represented in counter1
+//    with counter2 used as temporary storage for stack operations.
+//
+// For stack alphabet {0,1}, stack contents (top to bottom) are b0 b1 ... b(n-1)
+//    (for some n >= 0), which are encoded in counter1 as
+//    b0 + b1*2 + b2*4 + b3*8 + ... + (b(n-1))*2^{n-1} + 2^n - 1.
+// " - 1" above is so that counter1 == 0 represents an empty stack.
+// A paren is encoded as 0
+// A bracket is encoded as 1
+// To push (something), increment counter1 first, then ...
+//     to push a paren, double into counter2
+//     to push a bracket, double into counter2 then increment counter2
+//
+// The worst-case computation time is exponential in the length of the input!
+//
+(#,(,*,=) -> (#push_paren0,+,=)         // Initial increment
+(#,[,*,=) -> (#push_bracket0,+,=)
+(#push_paren0,,>,*) -> (#push_paren1,=,+)
+(#push_paren1,,>,*) -> (#push_paren0,-,+)
+(#push_paren0,,=,*) -> (#copy_back,=,=)
+(#push_bracket0,,>,*) -> (#push_bracket1,=,+)
+(#push_bracket1,,>,*) -> (#push_bracket0,-,+)
+(#push_bracket0,,=,*) -> (#copy_back,=,+)
+// #copy_back moves counter2 back into counter1
+(#copy_back,,*,>) -> (#copy_back,+,-)
+(#copy_back,,>,=) -> (#,-,=) // Decrement counter1 to account for increment
+(#,,>,=) -> (#pop0,+,=)      // Initial increment
+// To pop, divide counter1 by 2 into counter2,
+//    then the remainder tells us what was popped.
+(#pop0,,>,*) -> (#pop1,-,+)
+(#pop0,),=,*) -> (#copy_back,=,=)
+(#pop1,,>,*) -> (#pop0,-,=)
+(#pop1,],=,*) -> (#copy_back,=,-)

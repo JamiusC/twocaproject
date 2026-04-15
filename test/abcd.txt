@@ -1,0 +1,10 @@
+// 2-CA to recognize { a^mb^nc^md^n : m,n >= 0 }
+//
+(#,,=,=)   -> (#a,=,=)
+(#a,a,*,*) -> (#a,+,=)  // count a's in the 1st counter
+(#a,,*,*)  -> (#b,=,=)
+(#b,b,*,*) -> (#b,=,+)  // count b's in the 2nd counter
+(#b,,*,*)  -> (#c,=,=)
+(#c,c,>,*) -> (#c,-,=)  // read c's while decrementing the 1st counter
+(#c,,=,*)  -> (#d,=,=)
+(#d,d,*,>) -> (#d,=,-)  // read d's while decrementing the 2nd counter

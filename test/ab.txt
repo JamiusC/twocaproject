@@ -1,0 +1,7 @@
+// 2-CA to recognize the language { a^nb^n : n >= 0 }
+//
+// The 2nd counter is unused and stays 0 the whole time.
+//
+(#,       a,*,=) -> (#,+,=)         // Read an "a" and increment counter 1
+(#,        ,>,=) -> (#read_bs,=,=)  // Epsilon transition from # to #read_bs
+(#read_bs,b,>,=) -> (#read_bs,-,=)  // Read a "b" and decrement counter 1

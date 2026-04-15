@@ -1,0 +1,3 @@
+(#,a,*,=) -> (#,+,=)
+(#, ,>,=) -> (#read_bs,=,=) // epsilon transition
+(#read_bs,b,>,=) -> (#read_bs,-,=)

@@ -1,0 +1,17 @@
+// 1-state 2CA to decide the language of all strings of "semibalanced"
+// parentheses
+//
+// A string of parentheses is *semibalanced* just when it can become balanced
+// by removing zero or more closing parentheses.
+//
+// Examples:
+//   )
+//   ()       (balanced and semibalanced)
+//   (()))()
+//
+// Only the 1st counter is used.  The 2nd counter remains zero throughout.
+// Takes advantage of the fact that decrementing a zero counter
+// does not change it.
+//
+(#,(,*,=) -> (#,+,=)
+(#,),*,=) -> (#,-,=)
